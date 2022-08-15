@@ -24,18 +24,16 @@ else{
 //Adding Function
 function add(){
     msg.style.display = "none";
-    //Remove Spacing
     let userValue = user.value.toLowerCase().trim();
-    //Convert To Number
-   let ageNumber = +(age.value);
+    let ageNumber = +(age.value);
 
-    //Check User Name && age Number
+    
     if(userValue && ageNumber >= 0){
 
-        //Check Condition Of Input Data 
+        
         if(userValue.length <= 10 &&
             (ageNumber > 0 && ageNumber <= 100)){ 
-               
+
                 let newUsers = {
                     id   : globalId, 
                     name : userValue, 
@@ -43,9 +41,7 @@ function add(){
 
                 } ;
             
-                // listArr.push(newItem);
-                console.log(listArr)
-
+                //switch bet Add &Edit
                 if(mood === "add"){
                     listArr.push(newUsers);
                     
@@ -56,26 +52,10 @@ function add(){
                     btn.innerHTML = "Add Users";
                 }
 
-
+                //clear Data
                 globalId += 1;
                 user.value = "";
                 age.value = "";
-               
-                let listOfUsers = "";
-            for(let i = 0; i < listArr.length; i++){
-            listOfUsers += 
-            `<li 
-                 id=${globalId.toString()}>
-                 <span>User Name:</span>${listArr[i].name}
-                 <span> Age:</span> ${listArr[i].age} 
-                 <button onclick=updateData(${i})>Edit</button> 
-                 <button onclick=del(${i})>Delete</button> 
-                </li>`;
-             
-
-            toDolist.innerHTML = listOfUsers;
-
-                }
                 
 
 
@@ -94,7 +74,7 @@ function add(){
                 msg.style.display = "block";
                 msg.innerHTML = 'Enter User Name Less Than 10 Letters <br>Enter User Age From 1 To 100';
             }
-    //Check Any Input is Entered
+    
     }else if(userValue && !ageNumber){
         msg.style.display = "block";
         msg.innerHTML = 'Please Enter Your Age';
@@ -107,13 +87,14 @@ function add(){
             msg.style.display = "block";
             msg.innerHTML = 'Please Enter Data';
     }
-    
+    Showdata()
 }
 //OnClick Event
 btn.onclick = add 
 
-function del(i)
-{
+
+//Delete Function
+function del(i){
     listArr.splice(i,1);
 localStorage.item = JSON.stringify(listArr);
 Showdata()
@@ -123,7 +104,7 @@ Showdata()
 
 
 
-
+//Update Function
 function updateData(i){
     
     user.value = listArr[i].name;
@@ -138,29 +119,38 @@ function updateData(i){
 }
 
 
-
+//search function
 function searchData(value){
-    let listOfUsers = "";
+    let listItems = "";
     for(var i = 0; i < listArr.length; i++){
         if(listArr[i].name.includes(value.toLowerCase())){
-            listOfUsers += 
+            listItems += 
             `<li 
-                 id=${globalId.toString()}>
-                 <span>User Name:</span>${listArr[i].name}
-                 <span> Age:</span> ${listArr[i].age} 
-                 <button onclick=updateData(${i})>Edit</button> 
-                 <button onclick=del(${i})>Delete</button> 
+                id=${globalId.toString()}>
+                <span>User Name:</span>${listArr[i].name}
+                <span> Age:</span> ${listArr[i].age} 
+                <button onclick=updateData(${i})>Edit</button> 
+                <button onclick=del(${i})>Delete</button> 
                 </li>`;
+
+                toDolist.innerHTML = listItems;
         }
+
     }
-    toDolist.innerHTML = listOfUsers;
-    
-    setTimeout(
-        search.onclick = function(){
-            Showdata() }, 5000);
-            }
+
+    }
 
 
+    function resetData(){
+        search.value = "";
+        search.focus();
+        Showdata();
+    }
+
+
+
+
+// showing Data Function
 function Showdata (){
     let listOfUsers = "";
     for(var i = 0; i < listArr.length; i++){
@@ -175,6 +165,6 @@ function Showdata (){
     
     }
     toDolist.innerHTML = listOfUsers;
-  }
- Showdata()
+    }
+    Showdata()
 

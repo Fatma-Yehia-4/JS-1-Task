@@ -39,16 +39,38 @@
     font-size: 20px;
 }
 
-.to-do-container  #searchBtn{
-    align-self: center;
-    padding: 10px 25px;
-    border: none;
-    background-color: rgb(202, 31, 31);
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 20px;
+
+
+span.searchReset {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+
+    
 }
+span.searchReset span {
+    position: absolute;
+    display: block;
+    top : 14px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #ccc;
+    font: 16px monospace;
+    text-align: center;
+    line-height: 1.1em;
+    cursor: pointer;
+}
+span.searchReset input {
+    padding: 10px;
+    width: 100%;
+    max-width: 800px;
+    
+}
+
+
 
 #usersList li {
     font-size: 20px;
@@ -71,3 +93,5 @@
     padding: 10px 20px;
     border-radius: 8px;
 }
+
+
