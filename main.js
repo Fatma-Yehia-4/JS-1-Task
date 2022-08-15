@@ -6,20 +6,12 @@ let toDolist = document.getElementById("usersList");
 let msg = document.getElementById("msg");
 let search = document.getElementById("search");
 let globalId = 1;
-let listArr  ;
+let listArr = [] ;
 let mood = "add";
 let tmp ;
 
 
 
-if (localStorage.item != null) {
-    listArr = JSON.parse(localStorage.item)
-}
-
-else{ 
-    listArr= []; 
-
-    }
 
 //Adding Function
 function add(){
@@ -96,7 +88,7 @@ btn.onclick = add
 //Delete Function
 function del(i){
     listArr.splice(i,1);
-localStorage.item = JSON.stringify(listArr);
+
 Showdata()
 }
 
